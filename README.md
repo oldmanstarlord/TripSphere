@@ -1,125 +1,117 @@
-TripSphere – End-to-End Travel Management Platform
+# TripSphere
 
-TripSphere is a full-stack travel management platform that enables users to efficiently plan and manage their trips. The system supports booking management, accommodation selection, itinerary planning, and expense tracking through a centralized dashboard.
+> Travel management platform (voice-job-platform) — full-stack app with a Node/Express backend and React frontend.
 
-Features
+## Overview
 
-User Authentication (Signup / Login with JWT)
+TripSphere provides booking and itinerary management for flights, trains, transport, accommodations and payments. The codebase is split into a backend API and a React frontend.
 
-Create, update, and delete trips
+## Features
 
-Accommodation selection and management
+- User authentication and management
+- Booking creation and retrieval
+- Flight, train, transport and accommodation endpoints
+- Itinerary and destination management
+- Payment processing endpoints
 
-Itinerary planning with structured trip schedules
+## Tech stack
 
-Cost tracking and budget monitoring
+- Backend: Node.js, Express
+- Frontend: React (Create React App)
+- Database: MySQL (SQL schema included)
 
-Secure RESTful API integration
+## Repository layout
 
-Responsive UI built with modern frontend practices
+- [backend](backend) — Express API, entry: [backend/server.js](backend/server.js)
+- [frontend](frontend) — React app (src in `frontend/src`)
+- [database/travel_management.sql](database/travel_management.sql) — DB schema and seed data
 
-Tech Stack
+Key backend folders:
+- [backend/controllers](backend/controllers) — route handlers
+- [backend/routes](backend/routes) — Express routes
+- [backend/models](backend/models) — data models
 
-Frontend
+## Prerequisites
 
-React.js
+- Node.js (16+ recommended)
+- npm or yarn
+- MySQL server
 
-Tailwind CSS
+## Quick start
 
-Axios
+1. Setup database
 
-React Router
+   - Create a MySQL database (e.g., `trip_sphere`) and import the schema:
 
-Backend
+```bash
+mysql -u <user> -p < trip_sphere < database/travel_management.sql
+```
 
-Node.js
+2. Backend
 
-Express.js
-
-JWT Authentication
-
-REST APIs
-
-Database
-
-MySQL
-
-Architecture Overview
-
-Client (React + Tailwind CSS)
-⬇
-REST API (Node.js + Express.js)
-⬇
-MySQL Database
-
-The application follows a modular and scalable client-server architecture with clear separation of concerns between frontend, backend, and database layers.
-
-Project Structure
-TripSphere/
-│
-├── client/              # React Frontend
-│   ├── src/
-│   ├── components/
-│   ├── pages/
-│   └── services/
-│
-├── server/              # Node + Express Backend
-│   ├── routes/
-│   ├── controllers/
-│   ├── models/
-│   └── config/
-│
-└── README.md
-Installation & Setup
-1. Clone the Repository
-git clone https://github.com/your-username/TripSphere.git
-cd TripSphere
-2. Backend Setup
-cd server
+```bash
+cd backend
 npm install
+# create a .env file with DB and auth variables (example below)
+# start the server (use the script available in package.json or run node server.js)
+npm start    # or: node server.js
+```
 
-Create a .env file inside the server directory:
+Example `.env` variables (adjust names if your code expects different keys):
 
-PORT=5000
+```
 DB_HOST=localhost
 DB_USER=root
 DB_PASSWORD=yourpassword
-DB_NAME=tripsphere
-JWT_SECRET=your_secret_key
+DB_NAME=trip_sphere
+DB_PORT=3306
+PORT=5000
+JWT_SECRET=your_jwt_secret
+```
 
-Run the backend:
+3. Frontend
 
-npm start
-3. Frontend Setup
-cd client
+```bash
+cd frontend
 npm install
 npm start
-Core Concepts Implemented
+```
 
-RESTful API design
+Set the frontend API base URL if required (for example `REACT_APP_API_URL=http://localhost:5000/api`).
 
-Secure authentication using JWT
+## API
 
-CRUD operations
+The backend exposes REST endpoints located in [backend/routes](backend/routes). Example endpoints include:
 
-Relational database schema design
+- Authentication: `/api/login`
+- Users: `/api/users`
+- Bookings: `/api/bookings`
+- Flights: `/api/flights`
+- Trains: `/api/trains`
+- Transport: `/api/transport`
+- Accommodations: `/api/accommodations`
+- Itineraries: `/api/itineraries`
+- Payments: `/api/payments`
+- Locations: `/api/locations`
 
-Middleware-based authorization
+Refer to the controllers in [backend/controllers](backend/controllers) for request/response details.
 
-Scalable backend architecture
+## Development notes
 
-Optimized API communication between frontend and backend
+- The backend entry point is [backend/server.js](backend/server.js).
+- The frontend is a typical CRA app in [frontend/src](frontend/src).
+- Add environment variables to `.env` files as needed for local development.
 
-Future Enhancements
+## Testing & scripts
 
-Payment gateway integration
+Check `backend/package.json` and `frontend/package.json` for available npm scripts (start, test, build, etc.).
 
-Third-party booking API integration
+## Contributing
 
-Admin dashboard
+1. Create a branch
+2. Make changes and add tests where appropriate
+3. Open a pull request describing your changes
 
-Docker containerization
+## License
 
-Cloud deployment
-
-CI/CD integration
+This repository does not include a license file. Add one if you plan to publish or share this project.
